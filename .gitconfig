@@ -1,6 +1,6 @@
 [user]
-	email = vermeulen.rasmus@gmail.com
-	name = Rasmus Vermeulen
+        email = vermeulen.rasmus@gmail.com
+        name = Rasmus Vermeulen
 [push]
         default = simple
 [color]
@@ -10,8 +10,8 @@
 [core]
         editor = vim
 [alias]
-        g = add
-    aa = !git add $(git rev-parse --show-toplevel)
+        a = add
+        aa = !git add $(git rev-parse --show-toplevel)
         aliases = config --get-regexp '^alias\\.'
         amend = commit --amend
         c = commit
@@ -26,7 +26,6 @@
         dnn = diff --name-status --diff-filter=A
         ds = diff --staged
         dsn = diff --staged --name-only
-        go = checkout
         hi = !git wtf
         kill = branch -D
         last = log -1 HEAD
@@ -43,58 +42,59 @@
         ss = stash
         st = status
         whatadded = log --diff-filter=A
-        wtf = !git br && git s && git slso = checkout
-    l = log -1
-    ap = add -p
-    rhp = reset HEAD -p
-    cfd = clean -fd
-    cf = clean -f
-    a = add
-    rh = reset HEAD
-    rbi = rebase -i
-    rbc = rebase --continue
-    rba = rebase --abort
-    pop = reset HEAD^
-    pl = pull
-    ps = push
-    sl = stash list
-    ls = stash list
-    rb = rebase
-    lg = log --grep
-    sh = show HEAD
-    brm = branch -m
-    k = branch -d
-    kk = branch -D
-    progress = !git --no-pager dcn dev && echo && git --no-pager dn dev
-    p = !git progress
-    rpo = remote prune origin
-    brc = branch --contains
-    ru = remote update
-    dnh = diff --name-only HEAD
-	rbs = rebase --skip
-	psf = push -f
-	lsf = ls-files
-	nuke = !git rh --hard && git cfd && git s
-	psmake = !git push -u origin $(git brn)
-	psm = !git psmake
-	brn = rev-parse --abbrev-ref HEAD
-	restage = update-index --again
-	b = branch
-	prb = pull --rebase
-	ai = add --intent
-	aai = add --all --intent
-	mb = merge-base
-	be = branch --edit-description
-	dp = !git d $(git mb dev HEAD)
-	bv = branch -vv
-	am = !echo override
-	fixup = !git amend --no-edit
-	bd = "!(export GIT_EDITOR=cat; git be | grep -v \"#\")"
-	dt = diff --text
-	f = fetch
-	dst = diff --staged --text
+        wtf = !git b && git s && git slso = checkout
+        l = log -1
+        ap = add -p
+        rhp = reset HEAD -p
+        cfd = clean -fd
+        cf = clean -f
+        rh = reset HEAD
+        rbi = rebase -i
+        rbc = rebase --continue
+        rba = rebase --abort
+        pop = reset HEAD^
+        pl = pull
+        ps = push
+        sl = stash list
+        ls = stash list
+        rb = rebase
+        lg = log --grep
+        sh = show HEAD
+        brm = branch -m
+        k = branch -d
+        kk = branch -D
+        progress = !git --no-pager dcn dev && echo && git --no-pager dn dev
+        p = !git progress
+        rpo = remote prune origin
+        brc = branch --contains
+        ru = remote update
+        dnh = diff --name-only HEAD
+        rbs = rebase --skip
+        psf = push -f
+        lsf = ls-files
+        nuke = !git rh --hard && git cfd && git s
+        psmake = !git push -u origin $(git brn)
+        psm = !git psmake
+        brn = rev-parse --abbrev-ref HEAD
+        restage = update-index --again
+        b = branch
+        prb = pull --rebase
+        ai = add --intent
+        aai = add --all --intent
+        mb = merge-base
+        be = branch --edit-description
+        dp = !git d $(git mb dev HEAD)
+        bv = branch -vv
+        am = !echo override
+        fixup = !git amend --no-edit
+        bd = "!(export GIT_EDITOR=cat; git be | grep -v \"#\")"
+        dt = diff --text
+        f = fetch
+        dst = diff --staged --text
+        gca = gc --aggressive
+	go = checkout
 [filter "lfs"]
-	clean = git-lfs clean -- %f
-	smudge = git-lfs smudge -- %f
-	process = git-lfs filter-process
-	required = true
+        clean = git-lfs clean -- %f
+        smudge = git-lfs smudge -- %f
+        process = git-lfs filter-process
+        required = true
