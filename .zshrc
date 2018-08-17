@@ -101,6 +101,13 @@ export NVM_DIR="$HOME/.nvm"
 export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
 echo vscode ✔
 
+
+export PATH="$PATH:/opt/local/bin"
+echo macports ✔
+
+# vscode shorthand
+alias c=code
+
 # git stuff
 alias g=git
 alias ge='git extras'
@@ -113,11 +120,40 @@ alias types='types-installer install --toDev'
 
 # make yarn usable
 if hash yarn 2>/dev/null; then
+  # add yarn global bin to path
+  yarnbin=$(yarn global bin);
+  if [[ ":$PATH:" != *":$yarnbin:"* ]]; then
+    PATH="$yarnbin:${PATH}";
+  fi
+
+  # install packages, if possible with @types
+  function yarnTypes () {
+    types=()
+    for package in $*; do 
+      yarn add $package;
+      (yarn add --dev "@types/$package" || return true);
+    done
+  }
+
+  # install packages, if possible with @types
+  # both as devDependencies
+  function yarnTypesDev () {
+    types=()
+    for package in $*; do 
+      yarn add $package --dev;
+      (yarn add --dev "@types/$package" || return true);
+    done
+  }
+
+
   alias y=yarn
 
   alias ya='y add'
   alias yad='ya --dev'
+  alias yat='yarnTypes $*'
+  alias yatd='yarnTypesDev $*'
   alias yrm='y remove'
+
 
   alias yg='y global'
   alias yga='yg add'
@@ -126,26 +162,15 @@ if hash yarn 2>/dev/null; then
   alias yy='y why'
   alias yp="y --pure-lockfile"
   alias yt='y test'
+  alias ytw='y test --watch'
+  alias yf='y --force'
+  alias yw='y workspace'
 
-  # add yarn global bin to path
-  yarnbin=$(yarn global bin);
-  if [[ ":$PATH:" != *":$yarnbin:"* ]]; then
-    PATH="$yarnbin:${PATH}";
-  fi
-
-  function yarnTypes () {
-    types=()
-    for package in $*; do 
-      yarn add $package;
-      (yarn add --dev "@types/$package" || return true);
-    done
-  }
-  alias yat='yarnTypes $*'
 
   echo yarn stuff ✔
 fi
 
-# if pnpm is ever popular enough T_T
+# have to set up again, can use custom resolvers!
 if hash pnpm 2>/dev/null; then
   alias p=pnpm
   alias pi='pnpm i'
@@ -171,24 +196,18 @@ function agcode () {
 }
 alias agc=agcode
 
-# run cmd that returns filenames and open in code
-# e.g. xcode git diff --name-only
-xcode () {
-	sh -c "$*" | xargs code
-}
 
-# write a jq command to file it's reading from
+# write a jq command safely to same file it's reading from
 function jqwrite () {
   jq $1 $2 | sponge $2
 }
 alias jqw=jqwrite
 
-# if new-shell: cd docs/projects
+# if new-shell: cd ~/Dev
 if [[ $PWD == $HOME ]]; then
-  cd ~/Documents/projects
+  cd ~/Dev
 fi
 
-echo zshrc complete ✔
 [[ -s "$HOME/.avn/bin/avn.sh" ]] && source "$HOME/.avn/bin/avn.sh" # load avn
 ###-begin-ng-completion###
 #
@@ -236,3 +255,32 @@ _ng_completion () {
 
 compctl -K _ng_completion ng
 ###-end-ng-completion###
+
+# load after the other stuff so we can `cd` if we need to
+# call 'nvm use' whenever entering a dir with a .nvmrc
+# autoload -U add-zsh-hook
+# load-nvmrc() {
+#   local node_version="$(nvm version)"
+#   local nvmrc_path="$(nvm_find_nvmrc)"
+
+#   if [ -n "$nvmrc_path" ]; then
+#     local nvmrc_node_version=$(nvm version "$(cat "${nvmrc_path}")")
+
+#     if [ "$nvmrc_node_version" = "N/A" ]; then
+#       nvm install
+#     elif [ "$nvmrc_node_version" != "$node_version" ]; then
+#       nvm use
+#     fi
+#   elif [ "$node_version" != "$(nvm version default)" ]; then
+#     echo "Reverting to nvm default version"
+#     nvm use default
+#   fi
+# }
+# add-zsh-hook chpwd load-nvmrc
+# load-nvmrc
+
+# echo nvm auto-loader ✔
+
+
+
+echo zshrc complete ✔
