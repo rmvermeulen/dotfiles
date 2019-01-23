@@ -79,8 +79,8 @@
 	restage = update-index --again
 	b = branch
 	prb = pull --rebase
-	ai = add --intent
-	aai = add --all --intent
+	ai = add --intent-to-add
+	aai = add --all --intent-to-add
 	mb = merge-base
 	be = branch --edit-description
 	dp = !git d $(git mb dev HEAD)a

@@ -102,6 +102,9 @@ export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/b
 echo vscode ✔
 
 
+export PATH="$PATH:/Users/rasmus/.deno/bin"
+echo deno ✔
+
 export PATH="$PATH:/opt/local/bin"
 echo macports ✔
 
@@ -115,8 +118,28 @@ alias gg='g go'
 
 echo git aliases ✔
 
-# typescript types
-alias types='types-installer install --toDev'
+# find file by name
+function findFile () {
+  if [[ $# -lt 1 ]] then;
+    return;
+  fi;
+  iname=$1
+  target=${2:-.}
+  find $target -not -path "*node_modules*" -iname "*$iname*" -type f;
+}
+alias ff=findFile
+# find file by name
+function findDir () {
+  if [[ $# -lt 1 ]] then;
+    return;
+  fi;
+  iname=$1
+  target=${2:-.}
+  find $target -not -path "*node_modules*" -iname "*$iname*" -type d;
+}
+alias fd=findDir
+
+echo find aliases ✔
 
 # make yarn usable
 if hash yarn 2>/dev/null; then
@@ -127,6 +150,7 @@ if hash yarn 2>/dev/null; then
   fi
 
   # install packages, if possible with @types
+  # > yarnTypes pack1 pack2 ...packages
   function yarnTypes () {
     types=()
     for package in $*; do 
@@ -176,13 +200,23 @@ if hash pnpm 2>/dev/null; then
   alias pi='pnpm i'
   alias pig='pnpm i -g'
   alias pid='pnpm i -D'
+
+  alias pri="pnpm recursive install"
+  alias prl="pnpm recursive link"
+
   alias prm='pnpm rm'
   alias prmg='pnpm rm -g'
+  
   alias pr='pnpm run'
   alias px='pnpx'
 
   echo pnpm aliases ✔
 fi
+
+# cache rust build using sccache
+export RUSTC_WRAPPER=sccache
+
+echo rust stuff ✔
 
 # open matched files from an ag query in code
 function agcode () {
