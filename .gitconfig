@@ -98,6 +98,8 @@
 	ar = update-index --again
 	bm = branch --merged
 	bl = branch --list
+	graph = log --graph --decorate --oneline
+	kill-orphans = !git b -v | ag gone | cut -d' ' -f3 | xargs -I b git k b
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f

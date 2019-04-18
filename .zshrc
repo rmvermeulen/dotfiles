@@ -178,17 +178,18 @@ if hash yarn 2>/dev/null; then
   alias yatd='yarnTypesDev $*'
   alias yrm='y remove'
 
-
   alias yg='y global'
   alias yga='yg add'
   alias ygrm='yg remove'
   
   alias yy='y why'
   alias yp="y --pure-lockfile"
+  alias yfr="y --frozen-lockfile"
   alias yt='y test'
   alias ytw='y test --watch'
   alias yf='y --force'
   alias yw='y workspace'
+  alias ylp='y list --pattern'
 
 
   echo yarn stuff ✔
