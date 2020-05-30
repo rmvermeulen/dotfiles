@@ -11,7 +11,6 @@ autoload -Uz compinit
 compinit
 # End of lines added by compinstall
 
-
 # If you come from bash you might have to change your $PATH.
 # export PATH=$HOME/bin:/usr/local/bin:$PATH
 
@@ -99,8 +98,13 @@ source $ZSH/oh-my-zsh.sh
 
 # nvm stuff (load before aliases for global packages)
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" 2>/dev/null # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+nvm use default;
+
+# deno stuf
+export DENO_INSTALL="/home/rasmus/.local"
+export PATH="$DENO_INSTALL/bin:$PATH"
 
 # Set personal aliases, overriding those provided by oh-my-zsh libs,
 # plugins, and themes. Aliases can be placed here, though oh-my-zsh
@@ -111,22 +115,11 @@ export NVM_DIR="$HOME/.nvm"
 # alias zshconfig="mate ~/.zshrc"
 # alias ohmyzsh="mate ~/.oh-my-zsh"
 
-# Add Visual Studio Code (code)
-export PATH="$PATH:/Applications/Visual Studio Code.app/Contents/Resources/app/bin"
-echo vscode ✔
-
-
-export PATH="$PATH:/Users/rasmus/.deno/bin"
-echo deno ✔
-
-export PATH="$PATH:/opt/local/bin"
-echo macports ✔
-
 # vscode shorthand
-alias c=code-insiders
+alias c=codium
 
-# find brew
-eval \$($(brew --prefix)/bin/brew shellenv);
+# mardown viewer (unfinished)
+alias md=~/Projects/mandown/mandown
 
 # git stuff
 alias g=git
@@ -158,8 +151,17 @@ alias fd=findDir
 
 echo find aliases ✔
 
+# find brew
+export HOMEBREW_PREFIX="/home/linuxbrew/.linuxbrew"
+export HOMEBREW_CELLAR="/home/linuxbrew/.linuxbrew/Cellar"
+export HOMEBREW_REPOSITORY="/home/linuxbrew/.linuxbrew/Homebrew"
+export PATH="/home/linuxbrew/.linuxbrew/bin:/home/linuxbrew/.linuxbrew/sbin:$PATH"
+export MANPATH="/home/linuxbrew/.linuxbrew/share/man:$MANPATH"
+export INFOPATH="/home/linuxbrew/.linuxbrew/share/info:$INFOPATH"
+
+
 # make yarn usable
-if hash yarn 2>/dev/null; then
+if type yarn 2>/dev/null; then
   # add yarn global bin to path
   yarnbin=$(yarn global bin);
   if [[ ":$PATH:" != *":$yarnbin:"* ]]; then
@@ -193,6 +195,7 @@ if hash yarn 2>/dev/null; then
   alias yad='ya --dev'
   alias yat='yarnTypes $*'
   alias yatd='yarnTypesDev $*'
+  alias yadt='yarnTypesDev $*'
   alias yrm='y remove'
 
   alias yg='y global'
@@ -213,7 +216,7 @@ if hash yarn 2>/dev/null; then
 fi
 
 # have to set up again, can use custom resolvers!
-if hash pnpm 2>/dev/null; then
+if type pnpm 2>/dev/null; then
   alias p=pnpm
   alias pi='pnpm i'
   alias pig='pnpm i -g'
@@ -236,6 +239,8 @@ export RUSTC_WRAPPER=sccache
 
 echo rust stuff ✔
 
+
+alias xc='xargs code'
 # open matched files from an ag query in code
 function agcode () {
   files=$(ag -l $*);
@@ -243,10 +248,16 @@ function agcode () {
     echo 'No files found!'
   else
     echo $files
-    echo $files | xargs code
+    echo $files | xc
   fi
 }
 alias agc=agcode
+
+# tilix fix
+if [[ $TILIX_ID ]]; then
+        source /etc/profile.d/vte.sh
+fi
+
 
 
 # write a jq command safely to same file it's reading from
@@ -327,7 +338,7 @@ compctl -K _ng_completion ng
 # load-nvmrc
 
 # echo nvm auto-loader ✔
-
-
-
+# if [[ $(pwd) = ~ ]]; then
+#   cd ~/Projects
+# fi
 echo zshrc complete ✔

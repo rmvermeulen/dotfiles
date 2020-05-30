@@ -63,7 +63,7 @@
 	brm = branch -m
 	k = branch -d
 	kk = branch -D
-	progress = !git --no-pager dcn dev && echo && git --no-pager dn dev
+	progress = !git --no-pager dcn master && echo && git --no-pager dn master
 	p = !git progress
 	rpo = remote prune origin
 	brc = branch --contains
@@ -83,7 +83,7 @@
 	aai = add --all --intent-to-add
 	mb = merge-base
 	be = branch --edit-description
-	dp = !git d $(git mb dev HEAD)a
+	dp = !git d $(git mb master HEAD)a
 	bv = branch -vv
 	am = !echo override
 	fixup = commit --fixup
