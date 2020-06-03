@@ -9,6 +9,9 @@
 	enabled = true
 [core]
 	editor = vim
+	
+[http]
+	sslcainfo=D:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
 [alias]
 	a = add
 	aa = !git add $(git rev-parse --show-toplevel)
