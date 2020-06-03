@@ -1,5 +1,5 @@
 [user]
-	email = vermeulen.rasmus@gmail.com
+	email = rasmus_vermeulen@tutanota.com
 	name = Rasmus Vermeulen
 [push]
 	default = simple
@@ -9,7 +9,6 @@
 	enabled = true
 [core]
 	editor = vim
-	
 [http]
 	sslcainfo=D:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
 [alias]
