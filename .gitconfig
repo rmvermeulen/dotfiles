@@ -8,9 +8,7 @@
 [rerere]
 	enabled = true
 [core]
-	editor = vim
-[http]
-	sslcainfo=D:/Program Files/Git/mingw64/ssl/certs/ca-bundle.crt
+	editor = nvim
 [alias]
 	a = add
 	aa = !git add $(git rev-parse --show-toplevel)
@@ -102,8 +100,13 @@
 	bl = branch --list
 	graph = log --graph --decorate --oneline
 	kill-orphans = !git b -v | ag gone | cut -d' ' -f3 | xargs -I b git k b
+	g = checkout
 [filter "lfs"]
 	clean = git-lfs clean -- %f
 	smudge = git-lfs smudge -- %f
 	process = git-lfs filter-process
 	required = true
+[pull]
+	rebase = true
+[init]
+	defaultBranch = main
