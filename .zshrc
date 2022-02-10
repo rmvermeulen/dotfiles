@@ -107,8 +107,25 @@ prompt_context() {}
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 echo "InstantOS zshrc complete"
+
 # my older stuff
-source ~/Projects/dotfiles/.zshrc
+source ~/Projects/dotfiles/jqwrite.sh
+source ~/Projects/dotfiles/misc.sh
+
+# nodejs-related stuff
+
+# fnm - fast nvm
+export PATH=/home/rasmus/.fnm:$PATH
+eval "`fnm env`"
+# setup yarn, if we use it
+if type yarn 2>/dev/null; then
+  source ~/Projects/dotfiles/setup-yarn.sh
+fi
+# setup pnpm, if we use it
+if type pnpm 2>/dev/null; then
+  source ~/Projects/dotfiles/setup-pnpm.sh
+fi
+
 # nim/choosenim
 export PATH=/home/rasmus/.nimble/bin:$PATH
 # register pub path (dart package manager)
