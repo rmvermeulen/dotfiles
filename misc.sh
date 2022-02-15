@@ -1,20 +1,9 @@
 # cache rust build using sccache
 export RUSTC_WRAPPER=sccache
 
-echo rust stuff ✔
+echo "rust build caching ✔"
 
 
-# open matched files from an ag query in code
-function agcode () {
-  files=$(ag -l $*);
-  if [ -z $files ]; then
-    echo 'No files found!'
-  else
-    echo $files
-    echo $files | xc
-  fi
-}
-alias agc=agcode
 # find file by name
 function findFile () {
   if [[ $# -lt 1 ]] then;
@@ -36,4 +25,4 @@ function findDir () {
 }
 alias fd=findDir
 
-echo find aliases ✔
+echo "findFile/ff findDir/fd ✔"
