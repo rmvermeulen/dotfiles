@@ -11,7 +11,7 @@ export ZSH="/home/rasmus/.oh-my-zsh"
 # load a random theme each time oh-my-zsh is loaded, in which case,
 # to know which specific one was loaded, run: echo $RANDOM_THEME
 # See https://github.com/ohmyzsh/ohmyzsh/wiki/Themes
-ZSH_THEME="random"
+ZSH_THEME="sunrise"
 
 # Set list of themes to pick from when loading at random
 # Setting this variable when ZSH_THEME=random will cause zsh to load
@@ -82,9 +82,12 @@ echo "oh-my-zsh ✔"
 # fish like syntax highlighting
 source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
-# some scripts
-source ~/Projects/dotfiles/jqwrite.sh
-source ~/Projects/dotfiles/misc.sh
+# setup my dotfiles
+DOTFILESDIR=~/dev/dotfiles
+
+
+source $DOTFILESDIR/jqwrite.sh
+source $DOTFILESDIR/misc.sh
 
 
 # nim/choosenim
@@ -126,10 +129,10 @@ echo "fnm ✔"
 # setup yarn, if we use it
 if type yarn &>/dev/null; then
   echo "yarn ✔"
-  source ~/Projects/dotfiles/setup-yarn.sh
+  source $DOTFILESDIR/setup-yarn.sh
 fi
 # setup pnpm, if we use it
 if type pnpm &>/dev/null; then
   echo "pnpm ✔"
-  source ~/Projects/dotfiles/setup-pnpm.sh
+  source $DOTFILESDIR/setup-pnpm.sh
 fi
