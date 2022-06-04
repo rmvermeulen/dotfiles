@@ -1,6 +1,21 @@
-source /usr/share/instantshell/zshrc
+# Lines configured by zsh-newuser-install
+HISTFILE=~/.histfile
+HISTSIZE=1000
+SAVEHIST=1000
+setopt autocd beep extendedglob nomatch notify
+bindkey -v
+# End of lines configured by zsh-newuser-install
+# The following lines were added by compinstall
+zstyle :compinstall filename '/home/rasmus/.zshrc'
 
-echo "InstantOS zshrc ✔"
+autoload -Uz compinit
+compinit
+# End of lines added by compinstall
+
+if [[ -f /usr/share/instantshell/zshrc ]]; then
+  source /usr/share/instantshell/zshrc
+  echo "InstantOS zshrc ✔"
+fi
 
 ### oh my zsh
 
@@ -80,7 +95,10 @@ source $ZSH/oh-my-zsh.sh
 echo "oh-my-zsh ✔"
 
 # fish like syntax highlighting
-source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+if [[ -f /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh ]]; then
+  source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+  echo "syntax highlighting ✔"
+fi
 
 # setup my dotfiles
 DOTFILESDIR=~/dev/dotfiles
@@ -122,17 +140,16 @@ export EERIEDIR PATH
 # fnm - fast nvm
 
 export PATH=/home/rasmus/.fnm:$PATH
-fnmSetupCmd=$(fnm env --use-on-cd)
-# echo "$fnmSetupCmd"
-eval $fnmSetupCmd
+eval "$(fnm env --use-on-cd)"
 echo "fnm ✔"
 # setup yarn, if we use it
 if type yarn &>/dev/null; then
-  echo "yarn ✔"
-  source $DOTFILESDIR/setup-yarn.sh
+  echo "yarn ✔ $(source $DOTFILESDIR/setup-yarn.sh)"
 fi
 # setup pnpm, if we use it
 if type pnpm &>/dev/null; then
-  echo "pnpm ✔"
-  source $DOTFILESDIR/setup-pnpm.sh
+  echo "pnpm ✔ $(source $DOTFILESDIR/setup-pnpm.sh)"
 fi
+
+# set screen layout
+~/.screenlayout/dual.sh
