@@ -144,11 +144,11 @@ eval "$(fnm env --use-on-cd)"
 echo "fnm ✔"
 # setup yarn, if we use it
 if type yarn &>/dev/null; then
-  echo "yarn ✔ $(source $DOTFILESDIR/setup-yarn.sh)"
+  source $DOTFILESDIR/setup-yarn.sh
 fi
 # setup pnpm, if we use it
 if type pnpm &>/dev/null; then
-  echo "pnpm ✔ $(source $DOTFILESDIR/setup-pnpm.sh)"
+  source $DOTFILESDIR/setup-pnpm.sh
 fi
 
 # set screen layout
