@@ -150,6 +150,24 @@ fi
 if type pnpm &>/dev/null; then
   source $DOTFILESDIR/setup-pnpm.sh
 fi
+# setup bun.sh, if we use it
+if type bun &>/dev/null; then
+  source $DOTFILESDIR/setup-bun.sh
+fi
+# echo "setting screenlayout..."
+# ~/.screenlayout/gaming.sh || ~/.screenlayout/triple.sh || ~/.screenlayout/dual.sh
 
-# set screen layout
-~/.screenlayout/dual.sh
+# pnpm
+export PNPM_HOME="/home/rasmus/.local/share/pnpm"
+export PATH="$PNPM_HOME:$PATH"
+# pnpm end
+
+# Load Angular CLI autocompletion.
+source <(ng completion script)
+
+# bun completions
+[ -s "/home/rasmus/.bun/_bun" ] && source "/home/rasmus/.bun/_bun"
+
+# Bun
+export BUN_INSTALL="/home/rasmus/.bun"
+export PATH="$BUN_INSTALL/bin:$PATH"
