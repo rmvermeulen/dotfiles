@@ -134,6 +134,15 @@ PATH=$PATH:$EERIEDIR/base/bin:$EERIEDIR/activeEnv/bin
 export EERIEDIR PATH
 # end Eerie config
 
+# fix tilix split terminals
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+  source /etc/profile.d/vte.sh
+fi
+
+# setup git, if we use it
+if type git &>/dev/null; then
+  source $DOTFILESDIR/setup-git.sh
+fi
 
 # nodejs-related stuff
 
