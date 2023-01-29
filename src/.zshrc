@@ -146,26 +146,14 @@ if type git &>/dev/null; then
 fi
 
 # nodejs-related stuff
-
 # fnm - fast nvm
 
 export PATH=/home/rasmus/.fnm:$PATH
 eval "$(fnm env --use-on-cd)"
 echo "fnm ✔"
-# setup yarn, if we use it
-if type yarn &>/dev/null; then
-  source $DOTFILES_SCRIPTSDIR/setup-yarn.sh
-fi
-# setup pnpm, if we use it
-if type pnpm &>/dev/null; then
-  source $DOTFILES_SCRIPTSDIR/setup-pnpm.sh
-fi
-# setup bun.sh, if we use it
-if type bun &>/dev/null; then
-  source $DOTFILES_SCRIPTSDIR/setup-bun.sh
-fi
-# echo "setting screenlayout..."
-# ~/.screenlayout/gaming.sh || ~/.screenlayout/triple.sh || ~/.screenlayout/dual.sh
+
+# package managers etc
+source $DOTFILES_SCRIPTSDIR/setup-node-etc.sh
 
 # pnpm
 export PNPM_HOME="/home/rasmus/.local/share/pnpm"
