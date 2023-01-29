@@ -1,1 +1,1 @@
-cp -vf .gitconfig .vimrc .zshrc ~
+cp -vf src/{.gitconfig,.vimrc,.zshrc} ~

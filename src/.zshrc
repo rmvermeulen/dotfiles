@@ -102,10 +102,11 @@ fi
 
 # setup my dotfiles
 DOTFILESDIR=~/dev/dotfiles
+DOTFILES_SCRIPTSDIR=~/dev/dotfiles/src/scripts
 
 
-source $DOTFILESDIR/jqwrite.sh
-source $DOTFILESDIR/misc.sh
+source $DOTFILES_SCRIPTSDIR/jqwrite.sh
+source $DOTFILES_SCRIPTSDIR/misc.sh
 
 
 # nim/choosenim
@@ -141,7 +142,7 @@ fi
 
 # setup git, if we use it
 if type git &>/dev/null; then
-  source $DOTFILESDIR/setup-git.sh
+  source $DOTFILES_SCRIPTSDIR/setup-git.sh
 fi
 
 # nodejs-related stuff
@@ -153,15 +154,15 @@ eval "$(fnm env --use-on-cd)"
 echo "fnm ✔"
 # setup yarn, if we use it
 if type yarn &>/dev/null; then
-  source $DOTFILESDIR/setup-yarn.sh
+  source $DOTFILES_SCRIPTSDIR/setup-yarn.sh
 fi
 # setup pnpm, if we use it
 if type pnpm &>/dev/null; then
-  source $DOTFILESDIR/setup-pnpm.sh
+  source $DOTFILES_SCRIPTSDIR/setup-pnpm.sh
 fi
 # setup bun.sh, if we use it
 if type bun &>/dev/null; then
-  source $DOTFILESDIR/setup-bun.sh
+  source $DOTFILES_SCRIPTSDIR/setup-bun.sh
 fi
 # echo "setting screenlayout..."
 # ~/.screenlayout/gaming.sh || ~/.screenlayout/triple.sh || ~/.screenlayout/dual.sh
