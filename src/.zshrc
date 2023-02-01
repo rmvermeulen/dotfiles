@@ -108,7 +108,6 @@ DOTFILES_SCRIPTSDIR=~/dev/dotfiles/src/scripts
 source $DOTFILES_SCRIPTSDIR/jqwrite.sh
 source $DOTFILES_SCRIPTSDIR/misc.sh
 
-
 # nim/choosenim
 export PATH=/home/rasmus/.nimble/bin:$PATH
 
@@ -128,6 +127,8 @@ alias vim=nvim
 alias dn=dotnet
 alias open=xdg-open
 
+# restore screenlayout
+~/.screenlayout/.reuse-last-layout.sh
 
 # fix tilix split terminals
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
