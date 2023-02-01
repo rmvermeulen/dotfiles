@@ -129,12 +129,6 @@ alias dn=dotnet
 alias open=xdg-open
 
 
-# Eerie config
-EERIEDIR=~/.eerie
-PATH=$PATH:$EERIEDIR/base/bin:$EERIEDIR/activeEnv/bin
-export EERIEDIR PATH
-# end Eerie config
-
 # fix tilix split terminals
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
   source /etc/profile.d/vte.sh
